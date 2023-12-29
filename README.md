@@ -9,5 +9,5 @@ This project provides an online portal for colleges to facilitate voting by clas
 
 ## Tech Stack
 
-Vaadin framework - Java
-SQL
+- Vaadin framework - Java
+- SQL
