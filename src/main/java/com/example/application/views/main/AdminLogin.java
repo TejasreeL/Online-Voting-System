@@ -5,6 +5,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
@@ -17,7 +18,7 @@ import java.sql.Statement;
 
 @PageTitle("AdminLogin")
 @Route(value = "adminlogin")
-public class AdminLogin extends HorizontalLayout {
+public class AdminLogin extends VerticalLayout {
 
     private TextField name;
     private PasswordField password;
@@ -58,7 +59,7 @@ public class AdminLogin extends HorizontalLayout {
         loginButton.addClickShortcut(Key.ENTER);
 
         setMargin(true);
-        setVerticalComponentAlignment(Alignment.END, name, loginButton);
+        //setVerticalComponentAlignment(Alignment.END, name, loginButton);
 
         add(name, password, loginButton);
     }
