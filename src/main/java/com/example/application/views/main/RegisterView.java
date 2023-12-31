@@ -1,4 +1,4 @@
-package com.application.views.main;
+package com.example.application.views.main;
 
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.UI;
@@ -57,7 +57,6 @@ public class RegisterView extends VerticalLayout {
         name = new TextField("Name");
         password = new PasswordField("Password");
         passwordConfirm = new PasswordField("Confirm password");
-        passwordConfirm.addClassName("register-view-password-field-1");
         setRequiredIndicatorVisible(rollNo, name, password, passwordConfirm);
         errorMessageField = new Span();
         submitButton = new Button("Join the community", Event -> insert("insert into login values('" + rollNo.getValue() +"', '" + name.getValue() + "', '" + password.getValue() + "')"));

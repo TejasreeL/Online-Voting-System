@@ -1,5 +1,6 @@
-package com.application.views.main;
+package com.example.application.views.user;
 
+import com.example.application.views.main.HomePage;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.html.H1;
@@ -7,9 +8,9 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouterLink;
 
-public class NavBar extends AppLayout {
+public class UserNavBar extends AppLayout {
 
-    public NavBar() {
+    public UserNavBar() {
         H1 title = new H1("Online Voting System");
         title.getStyle()
                 .set("font-size", "var(--lumo-font-size-l)")
@@ -23,7 +24,7 @@ public class NavBar extends AppLayout {
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
         tabs.getStyle().set("margin", "auto");
-        tabs.add(createTab("Home", HomePage.class), createTab("Register", RegisterView.class), createTab("Login", LoginView.class), createTab("Results", HomePage.class), createTab("About Us", AboutUs.class));
+        tabs.add(createTab("About Us", HomePage.class), createTab("Results", HomePage.class));
         return tabs;
     }
 

@@ -1,4 +1,4 @@
-package com.application.views.main;
+package com.example.application.views.admin;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
@@ -15,32 +15,32 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-@PageTitle("Login")
-@Route(value = "login")
-public class LoginView extends VerticalLayout {
+@PageTitle("AdminLogin")
+@Route(value = "adminlogin")
+public class AdminLogin extends VerticalLayout {
 
-    private TextField rollNo;
+    private TextField name;
     private PasswordField password;
-    private Button loginButton, adminLogin;
+    private Button loginButton;
 
-    public void validateLogin(String rollNo, String password) {
+    public void validateLogin(String name, String password) {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCLA", "system", "1234");
-            System.out.println("connection is successful");
+            //System.out.println("connection is successful");
             Statement stmt = con.createStatement();
-//            Statement stmt1 = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            ResultSet rs = stmt.executeQuery("select * from login where password = '" + password + "'");
+            Statement stmt1 = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt1.executeQuery("select name from admin where password = '" + password + "'");
             String check = "";
             while(rs.next()) {
-                check = rs.getString("rollno");
+                check = rs.getString(1);
             }
-            if (rollNo.equals(check)) {
+            if (name.equals(check)) {
                 Notification.show("Login successful");
-                UI.getCurrent().navigate("userdashboard");
+                UI.getCurrent().navigate("homepage");
             }
             else {
-                Notification.show("Roll number and password wrong");
+                Notification.show("Name and password wrong");
             }
             stmt.close();
             con.close();
@@ -49,18 +49,18 @@ public class LoginView extends VerticalLayout {
         }
     }
 
-    public LoginView() {
-        add(new NavBar());
-        rollNo = new TextField("Roll number: ");
+    public AdminLogin() {
+        name = new TextField("Name: ");
         password = new PasswordField("Password: ");
-        loginButton = new Button("Login");
-        loginButton.addClickListener(e -> validateLogin(rollNo.getValue(), password.getValue()));
+        loginButton = new Button("Admin Login");
+        loginButton.addClickListener(e -> validateLogin(name.getValue(), password.getValue()));
+
         loginButton.addClickShortcut(Key.ENTER);
-        adminLogin = new Button("Admin Login", Event -> UI.getCurrent().navigate("adminlogin"));
-        adminLogin.addClickShortcut(Key.ENTER);
+
         setMargin(true);
-        setAlignItems(Alignment.CENTER);
-        add(rollNo, password, loginButton, adminLogin);
+        //setVerticalComponentAlignment(Alignment.END, name, loginButton);
+
+        add(name, password, loginButton);
     }
 
 }
