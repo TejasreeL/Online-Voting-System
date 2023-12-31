@@ -1,5 +1,6 @@
-package com.example.application.views.main;
+package com.application.views.user;
 
+import com.application.views.main.HomePage;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.html.H1;

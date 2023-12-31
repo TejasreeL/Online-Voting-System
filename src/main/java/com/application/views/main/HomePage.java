@@ -1,12 +1,11 @@
-package com.example.application.views.main;
+package com.application.views.main;
 
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouterLink;
-@PageTitle("HomePage")
+
+@PageTitle("homepage")
 @Route(" ")
 public class HomePage extends VerticalLayout {
 

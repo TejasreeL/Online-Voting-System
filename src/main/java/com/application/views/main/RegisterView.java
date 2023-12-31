@@ -1,14 +1,12 @@
-package com.example.application.views.main;
+package com.application.views.main;
 
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -16,7 +14,6 @@ import com.vaadin.flow.router.Route;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.stream.Stream;
 
@@ -60,22 +57,12 @@ public class RegisterView extends VerticalLayout {
         name = new TextField("Name");
         password = new PasswordField("Password");
         passwordConfirm = new PasswordField("Confirm password");
-        //<theme-editor-local-classname>
         passwordConfirm.addClassName("register-view-password-field-1");
         setRequiredIndicatorVisible(rollNo, name, password, passwordConfirm);
         errorMessageField = new Span();
         submitButton = new Button("Join the community", Event -> insert("insert into login values('" + rollNo.getValue() +"', '" + name.getValue() + "', '" + password.getValue() + "')"));
         submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(title, name, rollNo, password, passwordConfirm, errorMessageField, submitButton);
-//        setMaxWidth("500px");
-//
-//        setResponsiveSteps(
-//                new ResponsiveStep("0", 1, ResponsiveStep.LabelsPosition.TOP),
-//                new ResponsiveStep("490px", 2, ResponsiveStep.LabelsPosition.TOP));
-//
-//        setColspan(title, 2);
-//        setColspan(errorMessageField, 2);
-//        setColspan(submitButton, 2);
         setAlignItems(Alignment.CENTER);
     }
 
