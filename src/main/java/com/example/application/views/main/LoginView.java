@@ -34,13 +34,15 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from login where password = '" + password + "'");
             String check = "";
+            String name = "";
             while(rs.next()) {
                 check = rs.getString("rollno");
+                name = rs.getString("name");
             }
             if (rollNo.equals(check)) {
                 Notification.show("Login successful");
                 AuthService.authenticate(rollNo); // Authenticating the user
-                UI.getCurrent().navigate("userdashboard");
+                UI.getCurrent().navigate("userdashboard/" + name);
             }
             else {
                 Notification.show("Roll number and password wrong");

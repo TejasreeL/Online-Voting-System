@@ -1,4 +1,4 @@
-package com.example.application.views.user;
+package com.example.application.views.admin;
 
 import com.example.application.service.AuthService;
 import com.example.application.views.main.HomePage;
@@ -12,9 +12,9 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouterLink;
 
-public class UserNavBar extends AppLayout {
+public class AdminNavBar extends AppLayout {
 
-    public UserNavBar() {
+    public AdminNavBar() {
         H1 title = new H1("Online Voting System");
         title.getStyle()
                 .set("font-size", "var(--lumo-font-size-l)")

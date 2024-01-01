@@ -1,5 +1,6 @@
 package com.example.application.views.admin;
 
+import com.example.application.views.main.NavBar;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -50,6 +51,7 @@ public class AdminLogin extends VerticalLayout {
     }
 
     public AdminLogin() {
+        add(new NavBar());
         name = new TextField("Name: ");
         password = new PasswordField("Password: ");
         loginButton = new Button("Admin Login");
