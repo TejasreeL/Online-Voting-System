@@ -38,7 +38,7 @@ public class AdminLogin extends VerticalLayout {
             }
             if (name.equals(check)) {
                 Notification.show("Login successful");
-                UI.getCurrent().navigate("homepage");
+                UI.getCurrent().navigate("admindashboard/" + name);
             }
             else {
                 Notification.show("Name and password wrong");
@@ -63,6 +63,7 @@ public class AdminLogin extends VerticalLayout {
         //setVerticalComponentAlignment(Alignment.END, name, loginButton);
 
         add(name, password, loginButton);
+        setAlignItems(Alignment.CENTER);
     }
 
 }

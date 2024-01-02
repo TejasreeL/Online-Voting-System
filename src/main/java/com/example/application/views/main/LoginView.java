@@ -44,6 +44,9 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
                 AuthService.authenticate(rollNo); // Authenticating the user
                 UI.getCurrent().navigate("userdashboard/" + name);
             }
+//            else if (rollNo.equals(null) || password.equals(null)) {
+//                Notification.show("Enter roll number and password");
+//            }
             else {
                 Notification.show("Roll number and password wrong");
             }
@@ -66,6 +69,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         add(new NavBar());
         rollNo = new TextField("Roll number: ");
         password = new PasswordField("Password: ");
+        rollNo.setRequired(true);
+        password.setRequired(true);
         loginButton = new Button("Login");
         loginButton.addClickListener(e -> validateLogin(rollNo.getValue(), password.getValue()));
         loginButton.addClickShortcut(Key.ENTER);
