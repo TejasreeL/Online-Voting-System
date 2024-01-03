@@ -1,5 +1,6 @@
 package com.example.application.views.user;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -11,15 +12,12 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.contextmenu.SubMenu;
 import com.vaadin.flow.component.menubar.MenuBar;
-import com.vaadin.flow.component.html.Hr;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 @Route("userdashboard/")
 public class UserDashboard extends VerticalLayout implements HasUrlParameter<String> {
+    String name;
     public UserDashboard() {
         String query = "select * from polls";
         ResultSet rs;
@@ -29,12 +27,15 @@ public class UserDashboard extends VerticalLayout implements HasUrlParameter<Str
             Statement stmt = con.createStatement();
             rs = stmt.executeQuery(query);
             add(new UserNavBar());
-            add(new H1("Select Poll"));
             MenuBar menuBar = new MenuBar();
             MenuItem item = menuBar.addItem("Select poll");
             SubMenu subMenu = item.getSubMenu();
             while(rs.next()) {
-                subMenu.addItem(rs.getString("Pollname"));
+                String pollname = rs.getString("Pollname");
+                subMenu.addItem(pollname, event -> {
+                    add(new Vote(pollname, name));
+                        }
+                );
             }
             add(menuBar);
             stmt.close();
@@ -43,11 +44,10 @@ public class UserDashboard extends VerticalLayout implements HasUrlParameter<Str
             System.out.println(se);
         }
 
-
     }
 
     @Override
-    public void setParameter(BeforeEvent event, String parameter) {
-        add(String.format("Hello, %s!", parameter));
+    public void setParameter(BeforeEvent event, String name) {
+        this.name = name;
     }
 }

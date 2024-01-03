@@ -41,12 +41,9 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             }
             if (rollNo.equals(check)) {
                 Notification.show("Login successful");
-                AuthService.authenticate(rollNo); // Authenticating the user
-                UI.getCurrent().navigate("userdashboard/" + name);
+               // AuthService.authenticate(rollNo);
+                UI.getCurrent().navigate("userdashboard/" + this.rollNo.getValue());
             }
-//            else if (rollNo.equals(null) || password.equals(null)) {
-//                Notification.show("Enter roll number and password");
-//            }
             else {
                 Notification.show("Roll number and password wrong");
             }

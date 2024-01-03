@@ -39,7 +39,19 @@ public class AddPoll extends VerticalLayout {
             System.out.println(se);
         }
         Notification.show("Poll Added Successfully");
-        //UI.getCurrent().navigate("login");
+    }
+
+    public void createTable(String query) {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCLA", "system", "1234");
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            stmt.close();
+            con.close();
+        } catch (Exception se) {
+            System.out.println(se);
+        }
     }
 
     AddPoll() {
@@ -84,14 +96,13 @@ public class AddPoll extends VerticalLayout {
             }
         }
 
-//        for(Integer i=1; i <= Integer.parseInt(number.getValue()); i++) {
-//            add(new W());
-//        }
-
         setAlignItems(Alignment.CENTER);
         add(new W1(), new W2(), new W3(), new W4(), new W5());
 
-        submitButton = new Button("Add Poll", Event -> insert("insert into polls values('" + pollName.getValue() + "', '" + c1.getValue() + "', '" + r1.getValue() + "', 0, '" + c2.getValue() + "', '" + r2.getValue() + "', 0, '" + c3.getValue() + "', '" + r3.getValue() + "', 0, '" + c4.getValue() + "', '" + r4.getValue() + "', 0, '" + c5.getValue() + "', '" + r5.getValue() + "', 0)"));
+        submitButton = new Button("Add Poll", Event -> {
+            insert("insert into polls values('" + pollName.getValue() + "', '" + c1.getValue() + "', '" + r1.getValue() + "', 0, '" + c2.getValue() + "', '" + r2.getValue() + "', 0, '" + c3.getValue() + "', '" + r3.getValue() + "', 0, '" + c4.getValue() + "', '" + r4.getValue() + "', 0, '" + c5.getValue() + "', '" + r5.getValue() + "', 0)");
+            createTable("create table " + pollName.getValue() + " (rollno varchar2(10), constraint fk_rollno foreign key(rollno) references login(rollno))");
+        });
         submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(submitButton);
     }
