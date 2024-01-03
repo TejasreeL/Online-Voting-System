@@ -1,6 +1,7 @@
 package com.example.application.views.main;
 
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.contextmenu.MenuItem;
@@ -17,6 +18,7 @@ public class Result extends VerticalLayout {
   public Result() {
     String query = "select * from polls";
     add(new NavBar());
+    add(new H3("Select a poll to view the result of the voting!"));
     ResultSet rs;
     try (Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCLA", "system", "1234");
         Statement stmt = con.createStatement();) {
@@ -35,6 +37,7 @@ public class Result extends VerticalLayout {
     } catch (Exception se) {
       System.out.println(se);
     }
+    setAlignItems(Alignment.CENTER);
   }
 
   void showResult(String pollname) {
@@ -50,15 +53,15 @@ public class Result extends VerticalLayout {
       cnt4 = rs.getInt("cnt4");
       cnt5 = rs.getInt("cnt5");
       if (cnt1 > cnt2 && cnt1 > cnt3 && cnt1 > cnt4 && cnt1 > cnt5)
-        add(new H1("The Winner is " + rs.getString("c1") + " " + rs.getString("r1") + " in " + pollname));
+        add(new H1("The Winner is " + rs.getString("c1") + " - " + rs.getString("r1") + " in " + pollname));
       else if (cnt2 > cnt1 && cnt2 > cnt3 && cnt2 > cnt4 && cnt2 > cnt5)
-        add(new H1("The Winner is " + rs.getString("c2") + " " + rs.getString("r2") + " in " + pollname));
+        add(new H1("The Winner is " + rs.getString("c2") + " - " + rs.getString("r2") + " in " + pollname));
       else if (cnt3 > cnt2 && cnt3 > cnt1 && cnt3 > cnt4 && cnt3 > cnt5)
-        add(new H1("The Winner is " + rs.getString("c3") + " " + rs.getString("r3") + " in " + pollname));
+        add(new H1("The Winner is " + rs.getString("c3") + " - " + rs.getString("r3") + " in " + pollname));
       else if (cnt4 > cnt2 && cnt4 > cnt3 && cnt4 > cnt1 && cnt4 > cnt5)
-        add(new H1("The Winner is " + rs.getString("c4") + " " + rs.getString("r4") + " in " + pollname));
+        add(new H1("The Winner is " + rs.getString("c4") + " - " + rs.getString("r4") + " in " + pollname));
       else if (cnt5 > cnt2 && cnt5 > cnt3 && cnt5 > cnt4 && cnt5 > cnt1)
-        add(new H1("The Winner is " + rs.getString("c5") + " " + rs.getString("r5") + " in " + pollname));
+        add(new H1("The Winner is " + rs.getString("c5") + " - " + rs.getString("r5") + " in " + pollname));
       else 
         add(new H1("There is no winner yet"));
     }

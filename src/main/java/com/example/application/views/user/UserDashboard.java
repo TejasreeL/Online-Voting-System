@@ -2,6 +2,7 @@ package com.example.application.views.user;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBarVariant;
@@ -28,6 +29,7 @@ public class UserDashboard extends VerticalLayout implements HasUrlParameter<Str
             rs = stmt.executeQuery(query);
             add(new UserNavBar());
             MenuBar menuBar = new MenuBar();
+            add(new H3("Select a poll you want to vote and cast a vote! Be proud to make a difference!"));
             MenuItem item = menuBar.addItem("Select poll");
             SubMenu subMenu = item.getSubMenu();
             while(rs.next()) {
@@ -43,7 +45,7 @@ public class UserDashboard extends VerticalLayout implements HasUrlParameter<Str
         } catch (Exception se) {
             System.out.println(se);
         }
-
+        setAlignItems(Alignment.CENTER);
     }
 
     @Override

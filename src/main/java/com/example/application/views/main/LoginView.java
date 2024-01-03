@@ -4,6 +4,7 @@ import com.example.application.service.AuthService;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -56,7 +57,6 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        // If the user is already authenticated, redirect to userdashboard
         if (AuthService.isAuthenticated()) {
             event.forwardTo("userdashboard");
         }
@@ -64,6 +64,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     public LoginView() {
         add(new NavBar());
+        add(new H3("Login to continue"));
         rollNo = new TextField("Roll number: ");
         password = new PasswordField("Password: ");
         rollNo.setRequired(true);

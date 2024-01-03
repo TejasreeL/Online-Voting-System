@@ -2,6 +2,7 @@ package com.example.application.views.user;
 
 import com.example.application.service.AuthService;
 import com.example.application.views.main.HomePage;
+import com.example.application.views.main.Result;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -34,7 +35,7 @@ public class UserNavBar extends AppLayout {
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
         tabs.getStyle().set("margin", "auto");
-        tabs.add(createTab("About Us", HomePage.class), createTab("Results", HomePage.class));
+        tabs.add(createTab("Home", HomePage.class), createTab("Results", Result.class));
         return tabs;
     }
 

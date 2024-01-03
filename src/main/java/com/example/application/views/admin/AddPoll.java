@@ -56,7 +56,7 @@ public class AddPoll extends VerticalLayout {
 
     AddPoll() {
         add(new AdminNavBar());
-        title = new H3("Add a poll");
+        title = new H3("Add a poll and contribute to the world of Psephologists!");
         pollName = new TextField("Poll name");
         //number = new TextField("Enter number of candidates");
         add(title, pollName);

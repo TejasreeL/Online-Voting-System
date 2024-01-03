@@ -23,7 +23,7 @@ public class NavBar extends AppLayout {
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
         tabs.getStyle().set("margin", "auto");
-        tabs.add(createTab("Home", HomePage.class), createTab("Register", RegisterView.class), createTab("Login", LoginView.class), createTab("Results", HomePage.class), createTab("About Us", AboutUs.class));
+        tabs.add(createTab("Home", HomePage.class), createTab("Register", RegisterView.class), createTab("Login", LoginView.class), createTab("Results", Result.class), createTab("About Us", AboutUs.class));
         return tabs;
     }
 

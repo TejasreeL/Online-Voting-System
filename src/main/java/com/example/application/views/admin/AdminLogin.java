@@ -4,6 +4,7 @@ import com.example.application.views.main.NavBar;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -52,6 +53,7 @@ public class AdminLogin extends VerticalLayout {
 
     public AdminLogin() {
         add(new NavBar());
+        add(new H3("Login to continue"));
         name = new TextField("Name: ");
         password = new PasswordField("Password: ");
         loginButton = new Button("Admin Login");

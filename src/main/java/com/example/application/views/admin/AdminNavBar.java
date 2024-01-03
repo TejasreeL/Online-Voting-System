@@ -35,7 +35,7 @@ public class AdminNavBar extends AppLayout {
     private Tabs getTabs() {
         Tabs tabs = new Tabs();
         tabs.getStyle().set("margin", "auto");
-        tabs.add(createTab("Add Poll", AddPoll.class), createTab("Results", HomePage.class));
+        tabs.add(createTab("Home", HomePage.class), createTab("Add Poll", AddPoll.class));
         return tabs;
     }
 
