@@ -56,7 +56,7 @@ public class AddPoll extends VerticalLayout {
 
     AddPoll() {
         add(new AdminNavBar());
-        title = new H3("Add a poll and contribute to the world of Psephologists!");
+        title = new H3("Add a poll");
         pollName = new TextField("Poll name");
         //number = new TextField("Enter number of candidates");
         add(title, pollName);
@@ -65,39 +65,31 @@ public class AddPoll extends VerticalLayout {
                 c1 = new TextField("Candidate 1 name");
                 r1 = new TextField("Roll number of candidate 1");
                 add(c1, r1);
-            }
-        }
-        class W2 extends HorizontalLayout {
-            W2() {
                 c2 = new TextField("Candidate 2 name");
-                r2 = new TextField("Roll number of candidate 1");
+                r2 = new TextField("Roll number of candidate 2");
                 add(c2, r2);
             }
         }
         class W3 extends HorizontalLayout {
             W3() {
                 c3 = new TextField("Candidate 3 name");
-                r3 = new TextField("Roll number of candidate 1");
+                r3 = new TextField("Roll number of candidate 3");
                 add(c3, r3);
-            }
-        }
-        class W4 extends HorizontalLayout {
-            W4() {
                 c4 = new TextField("Candidate 4 name");
-                r4 = new TextField("Roll number of candidate 1");
+                r4 = new TextField("Roll number of candidate 4");
                 add(c4, r4);
             }
         }
         class W5 extends HorizontalLayout {
             W5() {
                 c5 = new TextField("Candidate 5 name");
-                r5 = new TextField("Roll number of candidate 1");
+                r5 = new TextField("Roll number of candidate 5");
                 add(c5, r5);
             }
         }
 
         setAlignItems(Alignment.CENTER);
-        add(new W1(), new W2(), new W3(), new W4(), new W5());
+        add(new W1(), new W3(), new W5());
 
         submitButton = new Button("Add Poll", Event -> {
             insert("insert into polls values('" + pollName.getValue() + "', '" + c1.getValue() + "', '" + r1.getValue() + "', 0, '" + c2.getValue() + "', '" + r2.getValue() + "', 0, '" + c3.getValue() + "', '" + r3.getValue() + "', 0, '" + c4.getValue() + "', '" + r4.getValue() + "', 0, '" + c5.getValue() + "', '" + r5.getValue() + "', 0)");
