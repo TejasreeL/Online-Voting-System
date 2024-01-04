@@ -2,7 +2,6 @@ package com.example.application.views.admin;
 
 import com.example.application.service.AuthService;
 import com.example.application.views.main.HomePage;
-import com.example.application.views.admin.AddPoll;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;

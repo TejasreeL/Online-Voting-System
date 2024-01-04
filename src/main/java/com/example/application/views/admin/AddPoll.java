@@ -1,22 +1,21 @@
 package com.example.application.views.admin;
 
-import com.example.application.views.main.NavBar;
+import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.stream.Stream;
 
 @Route("admindashboard/addpoll")
 public class AddPoll extends VerticalLayout {
@@ -92,10 +91,32 @@ public class AddPoll extends VerticalLayout {
         add(new W1(), new W3(), new W5());
 
         submitButton = new Button("Add Poll", Event -> {
-            insert("insert into polls values('" + pollName.getValue() + "', '" + c1.getValue() + "', '" + r1.getValue() + "', 0, '" + c2.getValue() + "', '" + r2.getValue() + "', 0, '" + c3.getValue() + "', '" + r3.getValue() + "', 0, '" + c4.getValue() + "', '" + r4.getValue() + "', 0, '" + c5.getValue() + "', '" + r5.getValue() + "', 0)");
-            createTable("create table " + pollName.getValue() + " (rollno varchar2(10), constraint fk_rollno foreign key(rollno) references login(rollno))");
+            ResultSet rsvalidate;
+            try {
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCLA", "system", "1234");
+                Statement stmt1 = con.createStatement();
+                rsvalidate = stmt1.executeQuery("select * from polls where pollname = '" + pollName.getValue() + "'");
+                if (!rsvalidate.next()) {
+                    insert("insert into polls values('" + pollName.getValue() + "', '" + c1.getValue() + "', '" + r1.getValue() + "', 0, '" + c2.getValue() + "', '" + r2.getValue() + "', 0, '" + c3.getValue() + "', '" + r3.getValue() + "', 0, '" + c4.getValue() + "', '" + r4.getValue() + "', 0, '" + c5.getValue() + "', '" + r5.getValue() + "', 0)");
+                    createTable("create table " + pollName.getValue() + " (rollno varchar2(10), constraint fk_rollno foreign key(rollno) references login(rollno))");
+                    UI.getCurrent().navigate("addedpoll");
+                }
+                else {
+                    Notification.show("A poll with this name already exists!");
+                }
+                stmt1.close();
+                con.close();
+            } catch (Exception se) {
+                System.out.println(se);
+            }
         });
         submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(submitButton);
+        setRequiredIndicatorVisible(pollName, c1, c2, r1, r2, c3, r3);
+    }
+
+    private void setRequiredIndicatorVisible(HasValueAndElement<?, ?>... components) {
+        Stream.of(components).forEach(comp -> comp.setRequiredIndicatorVisible(true));
     }
 }

@@ -64,14 +64,6 @@ public class AdminRegister extends VerticalLayout {
         setAlignItems(Alignment.CENTER);
     }
 
-    public PasswordField getPasswordField() { return password; }
-
-    public PasswordField getPasswordConfirmField() { return passwordConfirm; }
-
-    public Span getErrorMessageField() { return errorMessageField; }
-
-    public Button getSubmitButton() { return submitButton; }
-
     private void setRequiredIndicatorVisible(HasValueAndElement<?, ?>... components) {
         Stream.of(components).forEach(comp -> comp.setRequiredIndicatorVisible(true));
     }
